@@ -34,7 +34,6 @@
 }
 
 .res-card{
-    height: 320px;
     width : 200px;
     padding: 5px;
     margin: 2px;
@@ -48,5 +47,5 @@
 
 .res-img{
     width: 100%;
-    
+    height: 150px;
 }
