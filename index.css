@@ -101,8 +101,8 @@ button{
 
 .Shimmer-res-card{
     height: 400px;
-    width: 150px;
-    background-color: blanchedalmond;
+    width: 200px;
+    background-color:#f0f0f0;
     margin: 10px;
 }
 
@@ -111,3 +111,7 @@ button{
     flex-wrap: wrap;
 }
 
+.user-card{
+    padding: 10px;
+    border: 1px solid black;
+}
