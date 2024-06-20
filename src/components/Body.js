@@ -3,36 +3,25 @@ import resObj from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import useBody from "../utils/useBody";
 
 const Body = () => {
-  const [resList, setResData] = useState([]);
-  const [originalList, setOriginalList] = useState();
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const resList = useBody();
+  const originalList = useBody();
 
-  const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.61450&lng=77.30630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const jsonData = await data.json();
-    setResData(
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-    setOriginalList(
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-    console.log(
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-  };
+  const onlineStatus = useOnlineStatus();
 
-  if (resList.length === 0) return <Shimmer />;
+  if (onlineStatus === false)
+    return (
+      <h1>
+        Oops, Looks like you are offline. Please check your internet connection!
+      </h1>
+    );
+
+  if (resList === null || resList === undefined) return <Shimmer />;
 
   return (
     <div className="body">
