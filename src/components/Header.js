@@ -7,24 +7,24 @@ const Header = () => {
   const [btnLogin, setbtnLogin] = useState("Login");
   const onlineStatus = useOnlineStatus();
   return (
-    <div className="header">
+    <div className="flex justify-between bg-orange-100 shadow-lg m-4">
       <div className="logo-container">
-        <img className="logo" src={logo}></img>
+        <img className="w-24" src={logo}></img>
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>Online Status :{onlineStatus ? "🟢" : "🔴"} </li>
-          <li>
+      <div className="flex items-center">
+        <ul className="flex p-4  m-4">
+          <li className="px-6">Online Status :{onlineStatus ? "🟢" : "🔴"} </li>
+          <li className="px-6">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="px-6">
             <Link to="/about">About Us</Link>
           </li>
-          <li>
+          <li className="px-6">
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li>
-            <img className="cart" src={cart}></img>
+          <li className="px-6">
+            <img className="w-10" src={cart}></img>
           </li>
           <button
             className="login-logout"

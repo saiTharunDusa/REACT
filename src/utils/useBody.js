@@ -15,7 +15,6 @@ const useBody = () => {
         ?.restaurants
     );
   };
-  console.log(resInfo);
   return resInfo;
 };
 

@@ -5,12 +5,26 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import useBody from "../utils/useBody";
+import { RES_CARD_LIST_URL } from "../utils/constants";
 
 const Body = () => {
   const [search, setSearch] = useState("");
 
-  const resList = useBody();
+  const [resList, setResData] = useState(null);
   const originalList = useBody();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(RES_CARD_LIST_URL);
+    const jsonData = await data.json();
+    setResData(
+      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+  };
 
   const onlineStatus = useOnlineStatus();
 
@@ -24,15 +38,17 @@ const Body = () => {
   if (resList === null || resList === undefined) return <Shimmer />;
 
   return (
-    <div className="body">
+    <div className="bg-orange-50">
       <div className="filter-btn">
-        <div className="search">
+        <div className="m-4 p-4">
           <input
+            className="border border-solid border-black rounded-lg"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           ></input>
           <button
+            className="px-4 py-2 bg-orange-100 m-4 rounded-lg font-semibold"
             onClick={() => {
               const filteredResList = originalList.filter((res) =>
                 res.info.name.toLowerCase().includes(search.toLowerCase())
@@ -42,27 +58,29 @@ const Body = () => {
           >
             Search
           </button>
+          <button
+            className="px-4 py-2  bg-orange-100 m-4 rounded-lg font-semibold"
+            onClick={() => {
+              const filteredResList = originalList.filter(
+                (res) => res.info.avgRating > 4.4
+              );
+              setResData(filteredResList);
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+          <button
+            className="px-4 py-2  bg-orange-100 m-4 rounded-lg font-semibold"
+            onClick={() => {
+              setResData(originalList);
+              setSearch("");
+            }}
+          >
+            Reset
+          </button>
         </div>
-        <button
-          onClick={() => {
-            const filteredResList = resList.filter(
-              (res) => res.info.avgRating > 4.2
-            );
-            setResData(filteredResList);
-          }}
-        >
-          Top Rated Restaurants
-        </button>
-        <button
-          onClick={() => {
-            setResData(originalList);
-            setSearch("");
-          }}
-        >
-          Reset
-        </button>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {resList.map((resData) => (
           <Link
             to={"/restaurant/" + resData.info.id}

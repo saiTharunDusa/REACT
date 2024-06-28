@@ -20,16 +20,21 @@ const RestaurantMenu = () => {
   } = resInfo?.cards[2]?.card?.card?.info;
 
   return (
-    <div>
-      <h1> {name} </h1>
-      <p>
-        {cuisines.join(",")} - {costForTwoMessage}
-      </p>
-      <h2> Menu </h2>
+    <div className="bg-orange-100 m-6 rounded-lg">
+      <div className="mx-[490px]">
+        <h1 className="font-bold text-2xl"> {name} </h1>
+        <p className="font-semibold text-xl ">
+          {cuisines.join(",")} - {costForTwoMessage}
+        </p>
+        <h2 className="font-semibold text-xl mt-10"> Menu </h2>
+      </div>
+
       <ul>
         {itemCards.map((item) => (
-          <li key={item?.card?.info?.id}>
-            {item?.card?.info?.name} - {" Rs. "} {item?.card?.info?.price / 100}
+          <li className="mx-[490px] my-1" key={item?.card?.info?.id}>
+            🎯
+            {item?.card?.info?.name} - {" Rs. "}{" "}
+            {(item?.card?.info?.price || item?.card?.info?.defaultPrice) / 100}
           </li>
         ))}
       </ul>
