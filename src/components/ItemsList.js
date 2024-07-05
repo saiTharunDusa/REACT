@@ -1,6 +1,13 @@
 import React from "react";
 import { SWIGGY_IMG_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
+
 const ItemsList = ({ items }) => {
+  const dispatch = useDispatch();
+  const handleClick = (item) => {
+    dispatch(addItem(item));
+  };
   return (
     <div>
       {items.map((item) => (
@@ -21,7 +28,10 @@ const ItemsList = ({ items }) => {
           </div>
           <div className="w-3/12 p-4 relative">
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 translate-y-1/4">
-              <button className="px-4 py-2 bg-orange-200 shadow-lg m-auto rounded-lg">
+              <button
+                className="px-4 py-2 bg-orange-200 shadow-lg m-auto rounded-lg"
+                onClick={() => handleClick(item)}
+              >
                 ADD
               </button>
             </div>

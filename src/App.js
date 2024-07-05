@@ -7,6 +7,9 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 /*
     Building a food delivery app.
@@ -32,9 +35,10 @@ const About = lazy(() => import("./components/About"));
 const App = () => {
   return (
     <div className="app">
-      <Header />
-
-      <Outlet />
+      <Provider store={appStore}>
+        <Header />
+        <Outlet />
+      </Provider>
     </div>
   );
 };
@@ -63,6 +67,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:ID",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
     errorElement: <Error />,
