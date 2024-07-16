@@ -1,6 +1,9 @@
 import { SWIGGY_IMG_URL } from "../utils/constants";
 const RestaurantCard = (props) => {
   const { resData } = props;
+  if (!resData || !resData.info) {
+    return null; // or return a placeholder component
+  }
   const { name, cuisines, avgRating, sla, cloudinaryImageId } = resData.info;
   const { deliveryTime } = sla.deliveryTime;
   return (
