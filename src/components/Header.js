@@ -21,7 +21,7 @@ const Header = () => {
           <li className="bg-orange-400 hover:bg-orange-600 text-white font-bold py-2 px-6              rounded-full                      
     shadow-md hover:shadow-lg         
     transition-all duration-300       
-    m-2">Online Status :{onlineStatus ? "🟢" : "🔴"} </li>
+    m-2">Online Status {onlineStatus ? "🟢" : "🔴"} </li>
           <li className="bg-orange-400 hover:bg-orange-600 text-white font-bold py-2 px-6              rounded-full                      
     shadow-md hover:shadow-lg         
     transition-all duration-300       
