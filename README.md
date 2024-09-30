@@ -35,13 +35,13 @@ This will typically start the server on http://localhost:3000 (or a similar port
 
 ## Additional Notes:
 
-This is a basic implementation and will be enhanced with additional features like:
--Checkout process (order details, payment options, confirmation)
--Order history
--Ratings and reviews
--User accounts and personalization
--Integration with delivery services and payment gateways
--Advanced filtering and sorting options
+## This is a basic implementation and will be enhanced with additional features like:
+#### - Checkout process (order details, payment options, confirmation)
+#### - Order history
+#### - Ratings and reviews
+#### - User accounts and personalization
+#### - Integration with delivery services and payment gateways
+#### - Advanced filtering and sorting options
 
 
 
